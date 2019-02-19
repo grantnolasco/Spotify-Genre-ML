@@ -31,18 +31,25 @@ Using the song title and artist, we searched through the Genius API for the lyri
 #### Numeric Features
 We were interested in seeing whether there was a difference in the audio features between the genres.
 
+![Alt text](https://github.com/grantnolasco/Spotify-Genre-ML/blob/master/EDA_Stuff/danceability.png?raw=true)
+
+![Alt text](https://github.com/grantnolasco/Spotify-Genre-ML/blob/master/EDA_Stuff/valence.png?raw=true)
+
+![Alt text](https://github.com/grantnolasco/Spotify-Genre-ML/blob/master/EDA_Stuff/acousticness.png?raw=true)
+
+![Alt text](https://github.com/grantnolasco/Spotify-Genre-ML/blob/master/EDA_Stuff/loudness.png?raw=true)
+
+![Alt text](https://github.com/grantnolasco/Spotify-Genre-ML/blob/master/EDA_Stuff/tempo.png?raw=true)
+
+![Alt text](https://github.com/grantnolasco/Spotify-Genre-ML/blob/master/EDA_Stuff/energy.png?raw=true)
+
+#### Lyrics 
+
 ![Alt text](https://github.com/grantnolasco/Spotify-Genre-ML/blob/master/EDA_Stuff/country_cloud.png?raw=true)
 
 ![Alt text](https://github.com/grantnolasco/Spotify-Genre-ML/blob/master/EDA_Stuff/rap_cloud.png?raw=true)
 
 ![Alt text](https://github.com/grantnolasco/Spotify-Genre-ML/blob/master/EDA_Stuff/metal_cloud.png?raw=true)
-
-#### Lyrics 
-LDA:
-![Alt text](https://github.com/grantnolasco/Spotify-Genre-ML/blob/master/EDA_Stuff/LDA_Prelim.png?raw=true)
-
-NMF:
-![Alt text](https://github.com/grantnolasco/Spotify-Genre-ML/blob/master/EDA_Stuff/NMF_Prelim.png?raw=true)
 
 EDA on numeric features and lyrics were done on R and Python respectively.
 
@@ -58,6 +65,12 @@ We are interested in examining the structure of the lyrics for all three genres.
 Once we've completed text preprocessing, we can begin our topic modeling. For LDA, we used GridSearchCV to acquire the best parameters. Currently, we're still messing around with the parameters because we are still deleting many useless words, which might take some time. For NMF, it will be much harder to determine the best parameters because NMF function doesn't have a scoring output. So, we might just have to mess around with it until the topics look good. 
 
 Here are examples of the current topics for LDA and NMF that we have so far:
+
+LDA:
+![Alt text](https://github.com/grantnolasco/Spotify-Genre-ML/blob/master/EDA_Stuff/LDA_Prelim.png?raw=true)
+
+NMF:
+![Alt text](https://github.com/grantnolasco/Spotify-Genre-ML/blob/master/EDA_Stuff/NMF_Prelim.png?raw=true)
 
 
 #### Predictive Modeling

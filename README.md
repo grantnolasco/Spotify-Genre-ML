@@ -31,8 +31,18 @@ Using the song title and artist, we searched through the Genius API for the lyri
 #### Numeric Features
 We were interested in seeing whether there was a difference in the audio features between the genres.
 
-#### Lyrics 
+![Alt text](https://github.com/grantnolasco/Spotify-Genre-ML/blob/master/EDA_Stuff/country_cloud.png?raw=true)
 
+![Alt text](https://github.com/grantnolasco/Spotify-Genre-ML/blob/master/EDA_Stuff/rap_cloud.png?raw=true)
+
+![Alt text](https://github.com/grantnolasco/Spotify-Genre-ML/blob/master/EDA_Stuff/metal_cloud.png?raw=true)
+
+#### Lyrics 
+LDA:
+![Alt text](https://github.com/grantnolasco/Spotify-Genre-ML/blob/master/EDA_Stuff/LDA_Prelim.png?raw=true)
+
+NMF:
+![Alt text](https://github.com/grantnolasco/Spotify-Genre-ML/blob/master/EDA_Stuff/NMF_Prelim.png?raw=true)
 
 EDA on numeric features and lyrics were done on R and Python respectively.
 

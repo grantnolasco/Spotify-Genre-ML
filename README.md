@@ -54,7 +54,7 @@ We were interested in seeing whether there was a difference in the audio feature
 EDA on numeric features and lyrics were done on R and Python respectively.
 
 ### Topic Modeling 
-We are interested in examining the structure of the lyrics for all three genres. The two methods we wanted to test are LDA and NMF. But before we can start any topic modeling, we must performing data preprocessing on the text columns. Common text preprocessing methods we did includes:
+We are interested in examining the structure of the lyrics for all three genres and the similarities and dissimilairities with each other. The two methods we wanted to test are LDA and NMF. But before we can start any topic modeling, we must performing data preprocessing on the text columns. Common text preprocessing methods we did includes:
   - Changing the text case: We made all the words lowercase to make sure the same word doesn’t appear as different words. 
   - Removing punctuation: Since programming languages includes both the letters and punctuation inside a token, we needed to remove any punctuation to make sure same words appear as the same token. Also, punctuations don’t offer any information for us.
   - Removal of stop words: scikit-learn has 318 stop words but the R package called tm has 488 words. Therefore, we plan on importing the all the stop words from tm package to Python and create a union set of stop words. By doing this, we will be removing a lot of noise that could create some problems for us during the modeling process as these words do not provide us any valuable information.

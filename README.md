@@ -73,8 +73,56 @@ NMF:
 ![Alt text](https://github.com/grantnolasco/Spotify-Genre-ML/blob/master/EDA_Stuff/NMF_Prelim.png?raw=true)
 
 
-#### Predictive Modeling
-Our plan for predictive modeling is to test out numerous methods to determine which is the best. Currently, we're still working on predictions using only the audio features using the following methods: Gradient Boosting, Random Forest, Logistic Regression, and K-Nearest Neighbors. Once we've finished this step and the topic modeling, we want to know whether using the probability distributions for each "document" (lyrics of song) or TFIDF would work better as our features. Then, we plan on using the same algorithms to test the performance on just using song lyrics. Then, we can use an ensemble of both types of features for our test. 
+### Predictive Modeling: Numerical Features
+To start our process of building a predictive classification model, we chose four algorithms to test out: K-Nearest-Neighbors, Random Forest, Logistic Regression, and Gradient Boosting. 
+
+#### Data Preprocessing
+For each algorithm, we use Principal Component Analysis on the training data. We iteratively built models on transformed data in order to find the number of components that optimizes the model accuracy. Here are the results of this process for each algorithm:
+
+K-Nearest-Neighbors:
+![Alt text](https://github.com/grantnolasco/Spotify-Genre-ML/blob/master/EDA_Stuff/KNNPCA.png?raw=true)
+The optimal number of components for K-Nearest-Neighbors is 9.
+
+Random Forest:
+![Alt text](https://github.com/grantnolasco/Spotify-Genre-ML/blob/master/EDA_Stuff/RFPCA.png?raw=true)
+The optimal number of components for Random Forest is 11 (maximum).
+
+Logistic Regression:
+![Alt text](https://github.com/grantnolasco/Spotify-Genre-ML/blob/master/EDA_Stuff/LOGPCA.png?raw=true)
+The optimal number of components for Logistic Regression is 11 (maximum).
+
+Gradient Boosting:
+![Alt text](https://github.com/grantnolasco/Spotify-Genre-ML/blob/master/EDA_Stuff/GBPCA.png?raw=true)
+The optimal number of components for Gradient Boosting is 10.
+
+#### Parameter Tuning
+For each algorithm, we chose a principal parameter to tune in order to optimize the model accuracy. Similar to the data preprocessing, we iteratively built a model on the PCA-transformed data under each possible value of the parameter and selected the value which yielded the highest accuracy. Here are the results for each algorithm:
+
+K-Nearest-Neighbors (Number of Neighbors):
+![Alt text](https://github.com/grantnolasco/Spotify-Genre-ML/blob/master/EDA_Stuff/KNNparam.png?raw=true)
+The optimal number of neighbors for K-Nearest-Neighbors is 14.
+
+Random Forest (Number of Trees):
+![Alt text](https://github.com/grantnolasco/Spotify-Genre-ML/blob/master/EDA_Stuff/RFparam.png?raw=true)
+The optimal number of trees for Random Forest is 147.
+
+Logistic Regression (Regularization Strenght):
+![Alt text](https://github.com/grantnolasco/Spotify-Genre-ML/blob/master/EDA_Stuff/LOGparam.png?raw=true)
+The optimal inverse regularization strength for Logistic Regression is 1.6.
+
+Gradient Boosting (Number of Boosting Stages):
+![Alt text](https://github.com/grantnolasco/Spotify-Genre-ML/blob/master/EDA_Stuff/GBparam.png?raw=true)
+The optimal number of boosting stages for Gradient Boosting is 148.
+
+#### Model Comparison
+Now that we have selected the optimal value for each individual algorithm, we must compare the models collectively. We use 10-fold cross-validation to find the average accuracy, then select the model with the highest value. These are the results of cross-validating each model:
+
+K-Nearest-Neighbors Accuracy: 0.50 (+/- 0.02)
+Random Forest Accuracy: 0.80 (+/- 0.03)
+Logistic Regression Accuracy: 0.81 (+/- 0.02)
+Gradient Boosting Accuracy: 0.82 (+/- 0.03)
+
+Since the Gradient Boosting model yields the highest accuracy, we select this model as the best for predicting genre based only on numerical features.
 
 ### Possible Ideas 
 This section includes possible ideas to work on once we've finished the main ideas for our project. This includes adding more songs to our database since the max number of pages we can search on Spotify API is 10,000. Also, we can increase the number of genres like pop or classical and test out other methods such as neural networks. 

@@ -11,6 +11,7 @@ import base64
 import operator
 import pandas as pd
 
+
 ## URL Navigation
 
 AUTH_URL = 'https://accounts.spotify.com/authorize'
@@ -46,15 +47,17 @@ playlist_columns = ['danceability', 'energy', 'key', 'loudness', 'mode', 'speech
                     'liveness', 'valence', 'tempo', 'title', 'artist']
 
 rap_playlistData = pd.DataFrame(columns = playlist_columns)
+rap_title = []
 country_playlistData = pd.DataFrame(columns = playlist_columns)
+country_title = []
 metal_playlistData = pd.DataFrame(columns = playlist_columns)
+metal_title = []
 
-"""
 # ===  Acquiring a random song and its features (GENRE: RAP) ===
 
-# Requesting songs from Spotify search API
-for i in range(200):
-    rap_search = requests.get('https://api.spotify.com/v1/search?q=genre:rap&type=track&limit=50&offset={}'.format(i), headers = TOKEN_HEADERS).json()
+# Requesting songs from Spotify search API (4629 SONGS)
+for i in range(5000):
+    rap_search = requests.get('https://api.spotify.com/v1/search?q=genre:rap%20year:2010-2020&type=track&limit=50&offset={}'.format(i), headers = TOKEN_HEADERS).json()
     print(i)
 
     for song in rap_search['tracks']['items']:
@@ -68,23 +71,27 @@ for i in range(200):
         # Extracting the song ID to get the audio features
         song_id = song['id']
 
-        # Extracting the audio features/title of the song ID and appending it to the playlist dataframe
-        audio_features = list(requests.get('https://api.spotify.com/v1/audio-features/{}'.format(song_id), headers = TOKEN_HEADERS).json().values())
-        song_row = audio_features[:11]
-        song_row.append(song_title)
-        song_row.append(song_artist)
+        if song_title not in rap_title:
 
-        # Adding row list to our dataset
-        rap_playlistData = rap_playlistData.append(pd.DataFrame([song_row], columns = playlist_columns))
+            rap_title.append(song_title)
+
+            # Extracting the audio features/title of the song ID and appending it to the playlist dataframe
+            audio_features = list(requests.get('https://api.spotify.com/v1/audio-features/{}'.format(song_id), headers = TOKEN_HEADERS).json().values())
+            song_row = audio_features[:11]
+            song_row.append(song_title)
+            song_row.append(song_artist)
+
+            # Adding row list to our dataset
+            rap_playlistData = rap_playlistData.append(pd.DataFrame([song_row], columns = playlist_columns))
 
 # Converting dataframe into a csv file
-rap_playlistData.to_csv('/Users/gnolasco/Desktop/Python_Projects/rap.csv', encoding='utf-8', index=False)\
+rap_playlistData.to_csv('/Users/gnolasco/Desktop/Python_Projects/SpotifyPrediction/rap_january.csv', encoding='utf-8', index=False)\
 
 # ===  Acquiring a random song and its features (GENRE: COUNTRY) ===
 
-# Requesting songs from Spotify search API
-for i in range(200):
-    country_search = requests.get('https://api.spotify.com/v1/search?q=genre:country&type=track&limit=50&offset={}'.format(i), headers = TOKEN_HEADERS).json()
+# Requesting songs from Spotify search API (4476 SONGS)
+for i in range(5000):
+    country_search = requests.get('https://api.spotify.com/v1/search?q=genre:country%20year:2010-2020&type=track&limit=50&offset={}'.format(i), headers = TOKEN_HEADERS).json()
     print(i)
 
     for song in country_search['tracks']['items']:
@@ -98,47 +105,61 @@ for i in range(200):
         # Extracting the song ID to get the audio features
         song_id = song['id']
 
-        # Extracting the audio features/title of the song ID and appending it to the playlist dataframe
-        audio_features = list(requests.get('https://api.spotify.com/v1/audio-features/{}'.format(song_id), headers = TOKEN_HEADERS).json().values())
-        song_row = audio_features[:11]
-        song_row.append(song_title)
-        song_row.append(song_artist)
+        if song_title not in country_title:
 
-        # Adding row list to our dataset
-        country_playlistData = country_playlistData.append(pd.DataFrame([song_row], columns = playlist_columns))
+            country_title.append(song_title)
+
+            # Extracting the audio features/title of the song ID and appending it to the playlist dataframe
+            audio_features = list(requests.get('https://api.spotify.com/v1/audio-features/{}'.format(song_id), headers = TOKEN_HEADERS).json().values())
+            song_row = audio_features[:11]
+            song_row.append(song_title)
+            song_row.append(song_artist)
+
+            # Adding row list to our dataset
+            country_playlistData = country_playlistData.append(pd.DataFrame([song_row], columns = playlist_columns))
 
 # Converting dataframe into a csv file
-country_playlistData.to_csv('/Users/gnolasco/Desktop/Python_Projects/country.csv', encoding='utf-8', index=False)
+country_playlistData.to_csv('/Users/gnolasco/Desktop/Python_Projects/SpotifyPrediction/country_january.csv', encoding='utf-8', index=False)
 
-"""
 # ===  Acquiring a random song and its features (GENRE: METAL) ===
-
-# Requesting songs from Spotify search API
-for i in range(200):
-    metal_search = requests.get('https://api.spotify.com/v1/search?q=genre:metal&type=track&limit=50&offset={}'.format(i), headers = TOKEN_HEADERS).json()
+# Requesting songs from Spotify search API (4403 SONGS)
+for i in range(5000):
+    metal_search = requests.get('https://api.spotify.com/v1/search?q=genre:metal%20year:2010-2020&type=track&limit=50&offset={}'.format(i), headers = TOKEN_HEADERS).json()
     print(i)
 
-    for song in metal_search['tracks']['items']:
+    try:
+        for song in metal_search['tracks']['items']:
 
-        # Extracting song artist
-        song_artist = song['artists'][0]['name']
+            # Extracting song artist
+            song_artist = song['artists'][0]['name']
 
-        # Extracting the song title
-        song_title = song['name']
+            # Extracting the song title
+            song_title = song['name']
 
-        # Extracting the song ID to get the audio features
-        song_id = song['id']
+            # Extracting the song ID to get the audio features
+            song_id = song['id']
 
-        # Extracting the audio features/title of the song ID and appending it to the playlist dataframe
-        audio_features = list(requests.get('https://api.spotify.com/v1/audio-features/{}'.format(song_id), headers = TOKEN_HEADERS).json().values())
-        song_row = audio_features[:11]
-        song_row.append(song_title)
-        song_row.append(song_artist)
+            if song_title not in metal_title:
 
-        # Adding row list to our dataset
-        metal_playlistData = metal_playlistData.append(pd.DataFrame([song_row], columns = playlist_columns))
+                metal_title.append(song_title)
+
+                # Extracting the audio features/title of the song ID and appending it to the playlist dataframe
+                audio_features = list(requests.get('https://api.spotify.com/v1/audio-features/{}'.format(song_id), headers = TOKEN_HEADERS).json().values())
+                song_row = audio_features[:11]
+                song_row.append(song_title)
+                song_row.append(song_artist)
+
+                # Adding row list to our dataset
+                metal_playlistData = metal_playlistData.append(pd.DataFrame([song_row], columns = playlist_columns))
+    except:
+        print(metal_search)
+
+        # Converting dataframe into a csv file
+        metal_playlistData.to_csv('/Users/gnolasco/Desktop/Python_Projects/SpotifyPrediction/metal_januaryV1.csv', encoding='utf-8', index=False)
 
 # Converting dataframe into a csv file
-metal_playlistData.to_csv('/Users/gnolasco/Desktop/Python_Projects/metal.csv', encoding='utf-8', index=False)
+metal_playlistData.to_csv('/Users/gnolasco/Desktop/Python_Projects/SpotifyPrediction/metal_january.csv', encoding='utf-8', index=False)
 
+"""
 print('\n End Program')
+

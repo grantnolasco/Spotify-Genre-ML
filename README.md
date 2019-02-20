@@ -43,6 +43,8 @@ We were interested in seeing whether there was a difference in the audio feature
 
 ![Alt text](https://github.com/grantnolasco/Spotify-Genre-ML/blob/master/EDA_Stuff/energy.png?raw=true)
 
+From looking at the graphs on the numeric features, we can tell there is an average difference between the three genres with many of the features. We're hoping this difference will help our models differentiate the the difference between the three. 
+
 #### Lyrics 
 
 ![Alt text](https://github.com/grantnolasco/Spotify-Genre-ML/blob/master/EDA_Stuff/country_cloud.png?raw=true)

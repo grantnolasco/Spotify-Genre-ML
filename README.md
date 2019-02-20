@@ -124,5 +124,8 @@ Now that we have selected the optimal value for each individual algorithm, we mu
 
 Since the Gradient Boosting model yields the highest accuracy, we select this model as the best for predicting genre based only on numerical features.
 
+### In Progress
+Currently, we're still working on improving our topic modeling and will finish the predictive modeling for the lyrics and ensemble soon.
+
 ### Possible Ideas 
 This section includes possible ideas to work on once we've finished the main ideas for our project. This includes adding more songs to our database since the max number of pages we can search on Spotify API is 10,000. Also, we can increase the number of genres like pop or classical and test out other methods such as neural networks. 

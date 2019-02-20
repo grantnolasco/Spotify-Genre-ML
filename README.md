@@ -117,10 +117,10 @@ The optimal number of boosting stages for Gradient Boosting is 148.
 #### Model Comparison
 Now that we have selected the optimal value for each individual algorithm, we must compare the models collectively. We use 10-fold cross-validation to find the average accuracy, then select the model with the highest value. These are the results of cross-validating each model:
 
-K-Nearest-Neighbors Accuracy: 0.50 (+/- 0.02)
-Random Forest Accuracy: 0.80 (+/- 0.03)
-Logistic Regression Accuracy: 0.81 (+/- 0.02)
-Gradient Boosting Accuracy: 0.82 (+/- 0.03)
+- K-Nearest-Neighbors Accuracy: 0.50 (+/- 0.02)
+- Random Forest Accuracy: 0.80 (+/- 0.03)
+- Logistic Regression Accuracy: 0.81 (+/- 0.02)
+- Gradient Boosting Accuracy: 0.82 (+/- 0.03)
 
 Since the Gradient Boosting model yields the highest accuracy, we select this model as the best for predicting genre based only on numerical features.
 
